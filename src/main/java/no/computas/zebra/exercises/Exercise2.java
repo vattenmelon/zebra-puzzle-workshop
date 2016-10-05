@@ -20,9 +20,11 @@ package no.computas.zebra.exercises;
  * #L%
  */
 
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 
 import java.io.StringWriter;
 
@@ -31,19 +33,22 @@ import java.io.StringWriter;
  */
 public class Exercise2 {
 
-  private Model createModel() {
-    Model model = ModelFactory.createDefaultModel();
-    String NS = "http://www.computas.no/zebra/";
-    model.setNsPrefix("", NS);
-    model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
-    //TODO
-    return model;
-  }
+	private Model createModel() {
+		Model model = ModelFactory.createDefaultModel();
+		String NS = "http://www.computas.no/zebra/";
+		model.setNsPrefix("", NS);
+		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
+		Resource subject = model.createResource(NS + "Joe");
+		Property predicate = model.createProperty(NS + "hasSentMessage");
+		String object = "Hello World!";
+		subject.addProperty(predicate, object, XSDDatatype.XSDstring);
+		return model;
+	}
 
-  public String getModelAsTtl() {
-    Model model = createModel();
-    StringWriter stringWriter = new StringWriter();
-    model.write(stringWriter, "TTL");
-    return stringWriter.toString();
-  }
+	public String getModelAsTtl() {
+		Model model = createModel();
+		StringWriter stringWriter = new StringWriter();
+		model.write(stringWriter, "TTL");
+		return stringWriter.toString();
+	}
 }

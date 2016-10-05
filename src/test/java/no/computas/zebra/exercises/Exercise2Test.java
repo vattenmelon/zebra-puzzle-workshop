@@ -39,6 +39,7 @@ public class Exercise2Test {
 
     String expected = StringUtils.trim(IOUtils.toString(getClass().getResource("/exercise1.ttl"), "UTF-8"));
     String actual = StringUtils.trim(exercise2.getModelAsTtl());
-    Assert.assertEquals(expected, actual);
+    Assert.assertEquals(expected, actual); //linefeed forskjell gjør at den ikke blir equals
+    
   }
 }

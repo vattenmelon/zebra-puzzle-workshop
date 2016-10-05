@@ -22,6 +22,7 @@ package no.computas.zebra.exercises;
 
 
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -37,7 +38,8 @@ public class Exercise1 {
   private final Model model;
 
   public Exercise1() {
-    model = null; //TODO
+    model = ModelFactory.createDefaultModel();
+    model.read("exercise1.ttl");
   }
 
   public Model getModel() {
