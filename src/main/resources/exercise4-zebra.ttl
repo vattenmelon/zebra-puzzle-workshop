@@ -130,10 +130,13 @@
 [ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( :Dog :Zebra :Fox :Snails :Horse ) ] .
 ### statement 2
-# TODO
+:Englishman :livesIn [  rdf:type :House;
+						:hasColor :Red
+						].
+						
 
 ### statement 3
-# TODO
+:Spaniard :hasPet :Dog .
 
 ### statement 4
 # TODO

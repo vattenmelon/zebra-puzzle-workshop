@@ -22,6 +22,8 @@ package no.computas.zebra.exercises;
 
 
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /**
  * @author Michael Gfeller
@@ -37,7 +39,8 @@ public class Exercise31 extends Exercise3 {
     }
 
     private OntModel readModel() {
-        OntModel ontModel = null; //TODO
+        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        ontModel.read("exercise3.ttl");
         return ontModel;
     }
 

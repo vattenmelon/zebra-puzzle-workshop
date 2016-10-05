@@ -1,5 +1,8 @@
 package no.computas.zebra.exercises;
 
+import org.mindswap.pellet.jena.PelletReasoner;
+import org.mindswap.pellet.jena.PelletReasonerFactory;
+
 /*
  * #%L
  * Zebra
@@ -22,6 +25,9 @@ package no.computas.zebra.exercises;
 
 
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.Reasoner;
 
 /**
  * @author Michael Gfeller
@@ -36,7 +42,10 @@ public class Exercise32 extends Exercise3 {
     }
 
     protected OntModel readModel(String modelInput) {
-        OntModel ontModel = null; //TODO
+    	Reasoner reasoner = PelletReasonerFactory.theInstance().create();
+        Model infModel = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        OntModel ontModel = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC, infModel);
+        ontModel.read(getClass().getResourceAsStream("/" + modelInput), null, TTL);
         return ontModel;
     }
 }
