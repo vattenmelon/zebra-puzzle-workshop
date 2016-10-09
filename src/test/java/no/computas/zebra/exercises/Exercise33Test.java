@@ -55,6 +55,7 @@ public class Exercise33Test {
     Assert.assertTrue(bergen.hasOntClass(Exercise3.NS + "NorwegianCity"));
   }
 
+
   @Test
   public void testLondonIsNotANorwegianCity() {
     Individual london = exercise33.getIndividual("London");

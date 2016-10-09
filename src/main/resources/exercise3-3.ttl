@@ -13,7 +13,7 @@
 #################################################################
 
 ex:hasMainCountryLanguage rdf:type owl:ObjectProperty ;
-                          rdfs:domain ex:Country ;                          
+                          rdfs:domain ex:Country ;
                           rdfs:range ex:Language .
 
 ex:hasMainLanguage rdf:type owl:ObjectProperty ;
@@ -21,19 +21,19 @@ ex:hasMainLanguage rdf:type owl:ObjectProperty ;
                    rdfs:range ex:Language ;
                    rdfs:subPropertyOf owl:topObjectProperty .
 
-ex:isInCountry rdf:type owl:ObjectProperty ;               
+ex:isInCountry rdf:type owl:ObjectProperty ;
                rdfs:domain ex:Settlement ;
                rdfs:range ex:Country .
 
 
-               
+
 #################################################################
 #
 #    Data properties
 #
 #################################################################
 
-ex:name rdf:type owl:DatatypeProperty ;        
+ex:name rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:string .
 
 #################################################################
@@ -48,7 +48,7 @@ ex:Settlement rdf:type owl:Class ;
                               owl:someValuesFrom ex:Country
                             ] .
 
-ex:City rdf:type owl:Class ;        
+ex:City rdf:type owl:Class ;
         rdfs:subClassOf ex:Settlement .
 
 ex:Country rdf:type owl:Class ;
@@ -59,7 +59,7 @@ ex:Country rdf:type owl:Class ;
                                            )
                                ] .
 
-ex:Language rdf:type owl:Class ;            
+ex:Language rdf:type owl:Class ;
             owl:equivalentClass [ rdf:type owl:Class ;
                                   owl:oneOf ( ex:Norwegian
                                               ex:English
@@ -68,7 +68,13 @@ ex:Language rdf:type owl:Class ;
 
 ex:NorwegianCity rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Class ;
-#TODO
+                                       owl:intersectionOf ( ex:City
+                                                            [
+                                                              rdf:type owl:Restriction ;
+                                                              owl:onProperty ex:hasMainLanguage ;
+                                                              owl:hasValue ex:Norwegian
+                                                            ]
+                                                          )
                                      ] ;
                  rdfs:subClassOf ex:City .
 
@@ -81,7 +87,7 @@ ex:NorwegianCity rdf:type owl:Class ;
 
 
 ex:Bergen rdf:type ex:City ,
-                   owl:NamedIndividual ;          
+                   owl:NamedIndividual ;
           ex:hasMainLanguage ex:Norwegian .
 
 
@@ -89,13 +95,13 @@ ex:Denmark rdf:type owl:NamedIndividual .
 
 ex:English rdf:type owl:NamedIndividual .
 
-ex:Norway rdf:type owl:NamedIndividual ;          
+ex:Norway rdf:type owl:NamedIndividual ;
           ex:hasMainCountryLanguage ex:Norwegian .
 
 ex:Norwegian rdf:type owl:NamedIndividual .
 
 ex:Oslo rdf:type ex:NorwegianCity ,
-                 owl:NamedIndividual ;        
+                 owl:NamedIndividual ;
         ex:isInCountry ex:Norway ;
         ex:hasMainLanguage ex:Norwegian .
 
